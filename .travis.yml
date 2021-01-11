@@ -16,7 +16,7 @@ env:
     - "PYTHON_VER=3.8"
     - "PYTHON_VER=3.9"
 before_script:
-  - "pip install invoke poetry toml"
+  - "pip install invoke poetry toml black bandit pydocstyle flake8 yamllint pylint"
   - "invoke build-image --nocache"
 script:
   - "invoke pytest"
