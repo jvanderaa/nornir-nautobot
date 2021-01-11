@@ -16,7 +16,7 @@ env:
     - "PYTHON_VER=3.8"
     - "PYTHON_VER=3.9"
 before_script:
-  - "pip install invoke poetry toml black bandit pydocstyle flake8 yamllint pylint"
+  - "pip install invoke poetry toml"
   - "invoke build-image --nocache"
 script:
   - "invoke pytest"
@@ -27,7 +27,7 @@ jobs:
       env:
         - "INVOKE_LOCAL=True"
       before_script:
-        - "pip install invoke toml"
+        - "pip install invoke toml black bandit pydocstyle flake8 yamllint pylint"
       script:
         - "invoke black"
         - "invoke bandit" # Bandit fails to function on > Py3.8 https://github.com/PyCQA/bandit/issues/639
