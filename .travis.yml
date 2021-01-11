@@ -17,7 +17,7 @@ env:
     - "PYTHON_VER=3.9"
 before_script:
   - "pip install invoke poetry toml"
-  - "invoke build-image --nocache"
+  - "invoke build --nocache"
 script:
   - "invoke pylint"
   - "invoke pytest"
