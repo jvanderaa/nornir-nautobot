@@ -1,0 +1,7 @@
+[flake8]
+# E501: Line length is enforced by Black, so flake8 doesn't need to check it
+# W503: Black disagrees with this rule, as does PEP 8; Black wins
+# E302: Black disagrees with this; Black wins
+# E231: Black disagrees with this; Black wins Missing whitespace
+ignore = E501, W503, E302, E231, D401
+exclude = .git,tests/
