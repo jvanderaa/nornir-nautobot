@@ -113,6 +113,9 @@ class GrimlockInventory:
             # Assign the pygrimlock host object to the data key
             inv_dev["data"]["pygrimlock_object"] = self.pygrimlock_obj.dcim.devices.get(name=device)
 
+            # Create dictionary object available for filtering
+            inv_dev["data"]["pygrimlock_dictionary"] = dict(inv_dev["data"]["pygrimlock_object"])
+
             # Add Primary IP address, if found. Otherwise add hostname as the device name
             inv_dev["hostname"] = None
 
