@@ -3,7 +3,7 @@
 import sys
 import logging
 from os import getenv
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Union
 
 # Nornir Imports
 from nornir.core.inventory import (
@@ -26,10 +26,10 @@ class GrimlockInventory:
 
     def __init__(
         self,
-        grimlock_url: Optional[str],
-        grimlock_token: Optional[str],
-        ssl_verify: Optional[bool] = True,
-        filter_parameters: Optional[Dict[str, Any]] = None,
+        grimlock_url: Union[str, None],
+        grimlock_token: Union[str, None],
+        ssl_verify: Union[bool, None] = True,
+        filter_parameters: Union[Dict[str, Any], None] = None,
     ) -> None:
         """Grimlock nornir class initialization."""
         self.grimlock_url = grimlock_url or getenv("GRIMLOCK_URL")
