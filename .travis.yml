@@ -2,6 +2,7 @@
 # Add additional stages in the order of execution here, and then under the job:include: key
 stages:
   - "lint"
+  - "pylint"
   - "test"
 
 if: "type IN (pull_request)" # Add in "branch" as an option if desired for branch testing as well
@@ -19,7 +20,6 @@ before_script:
   - "pip install invoke poetry toml"
   - "invoke build --nocache"
 script:
-  - "invoke pylint"
   - "invoke pytest"
 
 jobs:
@@ -35,3 +35,9 @@ jobs:
         - "invoke pydocstyle"
         - "invoke flake8"
         - "invoke yamllint"
+    - stage: "pylint"
+      before_script:
+        - "pip install invoke poetry toml"
+        - "invoke build --nocache"
+      script:
+        - "invoke pylint"
