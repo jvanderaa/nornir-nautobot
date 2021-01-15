@@ -1,8 +1,8 @@
 """Nornir Grimlock Inventory Plugin."""
 # Python Imports
+import os
 import sys
 import logging
-from os import getenv
 from typing import Any, Dict, Union
 
 # Nornir Imports
@@ -32,8 +32,8 @@ class GrimlockInventory:
         filter_parameters: Union[Dict[str, Any], None] = None,
     ) -> None:
         """Grimlock nornir class initialization."""
-        self.grimlock_url = grimlock_url or getenv("GRIMLOCK_URL")
-        self.grimlock_token = grimlock_token or getenv("GRIMLOCK_TOKEN")
+        self.grimlock_url = grimlock_url or os.getenv("GRIMLOCK_URL")
+        self.grimlock_token = grimlock_token or os.getenv("GRIMLOCK_TOKEN")
         self.filter_parameters = filter_parameters
         self.ssl_verify = ssl_verify
         self._verify_required()
@@ -115,6 +115,7 @@ class GrimlockInventory:
 
             # Create dictionary object available for filtering
             inv_dev["data"]["pygrimlock_dictionary"] = dict(inv_dev["data"]["pygrimlock_object"])
+            # TODO: #3 Investigate Nornir compatability with dictionary like object
 
             # Add Primary IP address, if found. Otherwise add hostname as the device name
             inv_dev["hostname"] = None
