@@ -59,6 +59,7 @@ The following linting tasks are required:
 * [Flake8](https://flake8.pycqa.org/en/latest/)
   * Black vs Flake conflicts: When conflicts arise between Black and Flake8, Black should win and Flake8 should be configured as such
 * [Pydocstyel](https://github.com/PyCQA/pydocstyle/)
+* [Pylint](https://www.pylint.org)
 * [Yamllint](https://yamllint.readthedocs.io)
 
 ### Tests - Interim
