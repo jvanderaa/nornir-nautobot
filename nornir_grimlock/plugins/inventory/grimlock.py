@@ -111,7 +111,7 @@ class GrimlockInventory:
             inv_dev: Dict[Any, Any] = {"data": {}}
 
             # Assign the pygrimlock host object to the data key
-            inv_dev["data"]["pygrimlock_object"] = self.pygrimlock_obj.dcim.devices.get(name=device)
+            inv_dev["data"]["pygrimlock_object"] = device
 
             # Create dictionary object available for filtering
             inv_dev["data"]["pygrimlock_dictionary"] = dict(inv_dev["data"]["pygrimlock_object"])
