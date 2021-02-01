@@ -14,7 +14,7 @@ This leverages Python3.6 or later. All features will be tested against 3.6 - 3.9
 
 ## Installing dependencies for local development
 
-This repository uses [poetry](https://python-poetry.org/) for dependency management and [invoke](http://www.pyinvoke.org) for task execution. 
+This repository uses [poetry](https://python-poetry.org/) for dependency management and [invoke](http://www.pyinvoke.org) for task execution. To see what invoke commands are available, issue the command `invoke --list`.   
 
 Follow these steps to set up your local development environment:
 
@@ -58,7 +58,7 @@ The following linting tasks are required:
 * [Black code style](https://github.com/psf/black)
 * [Flake8](https://flake8.pycqa.org/en/latest/)
   * Black vs Flake conflicts: When conflicts arise between Black and Flake8, Black should win and Flake8 should be configured as such
-* [Pydocstyel](https://github.com/PyCQA/pydocstyle/)
+* [Pydocstyle](https://github.com/PyCQA/pydocstyle/)
 * [Pylint](https://www.pylint.org)
 * [Yamllint](https://yamllint.readthedocs.io)
 
