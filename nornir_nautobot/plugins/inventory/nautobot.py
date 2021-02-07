@@ -62,7 +62,6 @@ class NautobotInventory:
         """Request session to pass into nautobot."""
         if self._api_session is None:
             self._api_session = Session()
-            self._api_session.headers.update({"Authorization": f"Token {self.nautobot_token}"})
             self._api_session.verify = self.ssl_verify
 
         return self._api_session

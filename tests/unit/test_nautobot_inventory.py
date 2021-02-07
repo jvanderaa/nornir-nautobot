@@ -85,7 +85,6 @@ def test_api_session():
         "Accept-Encoding": "gzip, deflate",
         "Accept": "*/*",
         "Connection": "keep-alive",
-        "Authorization": "Token 0123456789abcdef01234567890",
     }
     assert isinstance(test_class.api_session, Session)
     assert expected_headers == test_class.api_session.headers
