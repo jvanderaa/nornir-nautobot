@@ -1,15 +1,15 @@
-"""Pytest of Grimlock Inventory."""
+"""Pytest of Nautobot Inventory."""
 # Standard Library Imports
 from os import path
 
 # Third Party Imports
 import pytest
 from requests.sessions import Session
-import pynetbox as pygrimlock
+import pynetbox as pynautobot
 from requests_mock import Mocker
 
 # Application Imports
-from nornir_grimlock.plugins.inventory.grimlock import GrimlockInventory
+from nornir_nautobot.plugins.inventory.nautobot import NautobotInventory
 
 # GLOBALS
 HERE = path.abspath(path.dirname(__file__))
@@ -53,33 +53,33 @@ def load_api_calls(mock):
 #
 # Tests
 #
-def test_grimlock_nornir_initialization():
+def test_nautobot_nornir_initialization():
     # Set a var
     no_exception_found = True
     try:
-        GrimlockInventory(grimlock_url="http://localhost:8000", grimlock_token="0123456789abcdef01234567890")
+        NautobotInventory(nautobot_url="http://localhost:8000", nautobot_token="0123456789abcdef01234567890")
     except:  # pylint: disable=bare-except
         no_exception_found = False
 
     assert no_exception_found
 
 
-def test_grimlock_nornir_missing_url():
+def test_nautobot_nornir_missing_url():
     with pytest.raises(ValueError) as err:
-        GrimlockInventory(grimlock_url=None, grimlock_token="0123456789abcdef01234567890")
+        NautobotInventory(nautobot_url=None, nautobot_token="0123456789abcdef01234567890")
 
     assert str(err.value) == "Missing URL or Token from parameters or environment."
 
 
-def test_grimlock_nornir_missing_token():
+def test_nautobot_nornir_missing_token():
     with pytest.raises(ValueError) as err:
-        GrimlockInventory(grimlock_url="http://localhost:8000", grimlock_token=None)
+        NautobotInventory(nautobot_url="http://localhost:8000", nautobot_token=None)
 
     assert str(err.value) == "Missing URL or Token from parameters or environment."
 
 
 def test_api_session():
-    test_class = GrimlockInventory(grimlock_url="http://localhost:8000", grimlock_token="0123456789abcdef01234567890")
+    test_class = NautobotInventory(nautobot_url="http://localhost:8000", nautobot_token="0123456789abcdef01234567890")
     expected_headers = {
         "User-Agent": "python-requests/2.25.1",
         "Accept-Encoding": "gzip, deflate",
@@ -91,21 +91,21 @@ def test_api_session():
     assert expected_headers == test_class.api_session.headers
 
 
-def test_pygrimlock_obj():
-    test_class = GrimlockInventory(grimlock_url="http://mock.example.com", grimlock_token="0123456789abcdef01234567890")
-    assert isinstance(test_class.pygrimlock_obj, pygrimlock.api)
+def test_pynautobot_obj():
+    test_class = NautobotInventory(nautobot_url="http://mock.example.com", nautobot_token="0123456789abcdef01234567890")
+    assert isinstance(test_class.pynautobot_obj, pynautobot.api)
 
 
 def test_devices():
     # Import mock requests
     with Mocker() as mock:
         load_api_calls(mock)
-        test_class = GrimlockInventory(
-            grimlock_url="http://mock.example.com", grimlock_token="0123456789abcdef01234567890"
+        test_class = NautobotInventory(
+            nautobot_url="http://mock.example.com", nautobot_token="0123456789abcdef01234567890"
         )
-        pygrimlock_obj = pygrimlock.api(url="http://mock.example.com", token="0123456789abcdef01234567890")
+        pynautobot_obj = pynautobot.api(url="http://mock.example.com", token="0123456789abcdef01234567890")
         expected_devices = []
         for device in ["den-dist01", "den-dist02", "den-wan01"]:
-            expected_devices.append(pygrimlock_obj.dcim.devices.get(name=device))
+            expected_devices.append(pynautobot_obj.dcim.devices.get(name=device))
 
         assert test_class.devices == expected_devices
