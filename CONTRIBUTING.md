@@ -4,15 +4,21 @@ This section describes how to install *nornir_nautobot* for development, how to 
 
 ## Branches
 
-- `main` - Reserved for released code
-- `develop` - Work in progress on the main roadmap
+- `main` - Reserved for current release
+- `develop` - Ready to release code, bases for new PRs
 - `<feature>` - Individual feature branches, should be PR'd to `develop`.
 
 ## Python Versions
 
 This leverages Python3.6 or later. All features will be tested against 3.6 - 3.9 versions of Python.
 
+## Versioning
+
+This project utilizes Semver versioning. As part of PRs the maintainers should leverage Poetry versioning to support the increase in version numbers. Reference [Poetry Version Docs](https://python-poetry.org/docs/cli/#version) for more information on automatically adjusting the version.  
+
 ## Installing dependencies for local development
+
+> These steps are also required for using the examples as provided in the repository for demonstration purposes.  
 
 This repository uses [poetry](https://python-poetry.org/) for dependency management and [invoke](http://www.pyinvoke.org) for task execution. To see what invoke commands are available, issue the command `invoke --list`.   
 
@@ -30,13 +36,13 @@ $ poetry install
 
 When you install dependencies via Poetry you will get invoke as part of the process.
 
-
 ## Running tests locally
 
 Docker images are available to provide a consistent development environment from one machine to another. The best practice recommendation is to execute two steps to test:
 
-1. Build Docker container image
-2. Execute test environment
+1. Build Docker container image (`invoke build`)
+2. Execute test environment (`invoke tests`)
+   1. You can execute individual tests as well by looking at the tests with the command `invoke --list`
 
 ### Build Docker container image
 
@@ -55,7 +61,9 @@ All tests should be located within the `tests\` directory with `tests\unit` for 
 The following linting tasks are required:
 
 * [Bandit](https://bandit.readthedocs.io/en/latest/)
+  * Basic security tests, should be run on Python3.6 or Python3.7
 * [Black code style](https://github.com/psf/black)
+  * Code formatting with version 20.8b1. There are some differences in the format between versions 19 and 20.
 * [Flake8](https://flake8.pycqa.org/en/latest/)
   * Black vs Flake conflicts: When conflicts arise between Black and Flake8, Black should win and Flake8 should be configured as such
 * [Pydocstyle](https://github.com/PyCQA/pydocstyle/)
@@ -64,4 +72,4 @@ The following linting tasks are required:
 
 ### Tests - Interim
 
-In the interim while the primary project is still in private access, any execution environments (pygrimlock or grimlock itself) should be packaged and stored in `tests\packages` for independent installation until the public images are available.
+In the interim while the primary project is still in private access, any execution environments (pynautobot or Nautobot itself) should be packaged and stored in `tests\packages` for independent installation until the public images are available.
