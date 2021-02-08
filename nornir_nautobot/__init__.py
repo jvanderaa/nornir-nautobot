@@ -1,1 +1,1 @@
-"""Nornir grimlock inventory."""
+"""Nornir nautobot inventory."""
