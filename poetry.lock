@@ -359,6 +359,22 @@ mccabe = ">=0.6,<0.7"
 toml = ">=0.7.1"
 
 [[package]]
+name = "pynautobot"
+version = "1.0.0"
+description = "Nautbot API client library"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
+
+[package.dependencies]
+requests = ">=2.20.0,<3.0.0"
+six = ">=1.0.0,<2.0.0"
+
+[package.source]
+type = "file"
+url = "tests/packages/pynautobot-1.0.0-py2.py3-none-any.whl"
+
+[[package]]
 name = "pynetbox"
 version = "5.3.0"
 description = "NetBox API client library"
@@ -592,7 +608,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "fedb8aa60efc34319c8106b2093826de2c2939ad7db94f0f558ac466a375c9cb"
+content-hash = "56bf3f5723b96152c7efb4f5ff2cc339121c0d27e3bfe323a4b70685092f5d58"
 
 [metadata.files]
 appdirs = [
@@ -766,6 +782,9 @@ pylint = [
     {file = "pylint-2.6.0-py3-none-any.whl", hash = "sha256:bfe68f020f8a0fece830a22dd4d5dddb4ecc6137db04face4c3420a46a52239f"},
     {file = "pylint-2.6.0.tar.gz", hash = "sha256:bb4a908c9dadbc3aac18860550e870f58e1a02c9f2c204fdf5693d73be061210"},
 ]
+pynautobot = [
+    {file = "pynautobot-1.0.0-py2.py3-none-any.whl", hash = "sha256:843bd6cc4408710a97a4121a1a229369c6e1589f22602d78f733904dd0607f28"},
+]
 pynetbox = [
     {file = "pynetbox-5.3.0-py3-none-any.whl", hash = "sha256:dcdae3d4b58f47862919ef8c2d2cdc45607a8623fcba8579e3e1240caf43ca21"},
     {file = "pynetbox-5.3.0.tar.gz", hash = "sha256:84b390fa08e9cfa07703b7b1d500038d2adef3b170b45afcef3e9a46e37ca402"},
@@ -793,6 +812,8 @@ pyyaml = [
     {file = "PyYAML-5.3.1-cp37-cp37m-win_amd64.whl", hash = "sha256:73f099454b799e05e5ab51423c7bcf361c58d3206fa7b0d555426b1f4d9a3eaf"},
     {file = "PyYAML-5.3.1-cp38-cp38-win32.whl", hash = "sha256:06a0d7ba600ce0b2d2fe2e78453a470b5a6e000a985dd4a4e54e436cc36b0e97"},
     {file = "PyYAML-5.3.1-cp38-cp38-win_amd64.whl", hash = "sha256:95f71d2af0ff4227885f7a6605c37fd53d3a106fcab511b8860ecca9fcf400ee"},
+    {file = "PyYAML-5.3.1-cp39-cp39-win32.whl", hash = "sha256:ad9c67312c84def58f3c04504727ca879cb0013b2517c85a9a253f0cb6380c0a"},
+    {file = "PyYAML-5.3.1-cp39-cp39-win_amd64.whl", hash = "sha256:6034f55dab5fea9e53f436aa68fa3ace2634918e8b5994d82f3621c04ff5ed2e"},
     {file = "PyYAML-5.3.1.tar.gz", hash = "sha256:b8eac752c5e14d3eca0e6dd9199cd627518cb5ec06add0de9d32baeee6fe645d"},
 ]
 regex = [

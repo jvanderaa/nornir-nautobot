@@ -5,7 +5,7 @@ from os import path
 # Third Party Imports
 import pytest
 from requests.sessions import Session
-import pynetbox as pynautobot
+import pynautobot
 from requests_mock import Mocker
 
 # Application Imports

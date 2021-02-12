@@ -15,7 +15,7 @@ from nornir.core.inventory import (
 )
 
 # Other third party imports
-import pynetbox as pynautobot
+import pynautobot
 from requests import Session
 
 # Create Logger
