@@ -372,7 +372,7 @@ six = ">=1.0.0,<2.0.0"
 
 [package.source]
 type = "file"
-url = "packages/pynautobot-1.0.0-py2.py3-none-any.whl"
+url = "packages/pynautobot-1.0.0.tar.gz"
 
 [[package]]
 name = "pyparsing"
@@ -596,7 +596,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "96c1110148b483d0ff2916b9f47bbe8cc3f20c29292252f8fbbd1d72cbce470b"
+content-hash = "5ec947d7c07e709d8d1f83b5910d3aeea209b4da7611dee584868b876ee8df22"
 
 [metadata.files]
 appdirs = [
@@ -771,7 +771,7 @@ pylint = [
     {file = "pylint-2.6.0.tar.gz", hash = "sha256:bb4a908c9dadbc3aac18860550e870f58e1a02c9f2c204fdf5693d73be061210"},
 ]
 pynautobot = [
-    {file = "pynautobot-1.0.0-py2.py3-none-any.whl", hash = "sha256:843bd6cc4408710a97a4121a1a229369c6e1589f22602d78f733904dd0607f28"},
+    {file = "pynautobot-1.0.0.tar.gz", hash = "sha256:ca69a8c93ccd818a3677afe67e490fd03cd1e64cc34f919e5e8eb31d721e4f4d"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
