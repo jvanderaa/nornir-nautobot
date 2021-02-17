@@ -8,7 +8,7 @@ authors = ["Network to Code, LLC <info@networktocode.com>"]
 python = "^3.6"
 nornir = "^3.0.0"
 requests = "^2.25.1"
-pynautobot = {path = "/home/joshv/projects/nornir_nautobot/packages/pynautobot-1.0.0.tar.gz"}
+pynautobot = {path = "/local/packages/pynautobot-1.0.0.tar.gz"}
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
