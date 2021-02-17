@@ -15,7 +15,7 @@ from nornir.core.inventory import (
 )
 
 # Other third party imports
-import pynetbox as pynautobot
+import pynautobot
 from requests import Session
 
 # Create Logger
@@ -59,7 +59,7 @@ class NautobotInventory:
 
     @property
     def api_session(self):
-        """Request session to pass into nautobot."""
+        """Requests session to pass into Nautobot."""
         if self._api_session is None:
             self._api_session = Session()
             self._api_session.verify = self.ssl_verify
@@ -68,7 +68,7 @@ class NautobotInventory:
 
     @property
     def pynautobot_obj(self) -> pynautobot.core.api.Api:
-        """Pynautobot API object to interact with nautobot.
+        """Pynautobot API object to interact with Nautobot.
 
         Returns:
             pynautobot object: Object to interact with the pynautobot SDK.

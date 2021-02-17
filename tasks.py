@@ -70,7 +70,7 @@ def run_cmd(context, exec_cmd, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCA
 def build(
     context, name=NAME, python_ver=PYTHON_VER, image_ver=IMAGE_VER, nocache=False, forcerm=False
 ):  # pylint: disable=too-many-arguments
-    """This will build an image with the provided name and python version.
+    """Builds an image with the provided name and python version.
 
     Args:
         context (obj): Used to run specific commands
@@ -95,7 +95,7 @@ def build(
 
 @task
 def clean_image(context, name=NAME, image_ver=IMAGE_VER):
-    """This will remove the specific image.
+    """Removes the specific image.
 
     Args:
         context (obj): Used to run specific commands
@@ -109,7 +109,7 @@ def clean_image(context, name=NAME, image_ver=IMAGE_VER):
 
 @task
 def rebuild_image(context, name=NAME, python_ver=PYTHON_VER, image_ver=IMAGE_VER):
-    """This will clean the image and then rebuild image without using cache.
+    """Cleans the image and then rebuild image without using cache.
 
     Args:
         context (obj): Used to run specific commands
@@ -123,7 +123,7 @@ def rebuild_image(context, name=NAME, python_ver=PYTHON_VER, image_ver=IMAGE_VER
 
 @task
 def pytest(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
-    """This will run pytest for the specified name and Python version.
+    """Runs pytest for the specified name and Python version.
 
     Args:
         context (obj): Used to run specific commands
@@ -140,7 +140,7 @@ def pytest(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
 
 @task
 def black(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
-    """This will run black to check that Python files adherence to black standards.
+    """Runs black to check that Python files adherence to black standards.
 
     Args:
         context (obj): Used to run specific commands
@@ -156,7 +156,7 @@ def black(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
 
 @task
 def flake8(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
-    """This will run flake8 for the specified name and Python version.
+    """Runs flake8 for the specified name and Python version.
 
     Args:
         context (obj): Used to run specific commands
@@ -172,7 +172,7 @@ def flake8(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
 
 @task
 def pylint(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
-    """This will run pylint for the specified name and Python version.
+    """Runs pylint for the specified name and Python version.
 
     Args:
         context (obj): Used to run specific commands
@@ -188,7 +188,7 @@ def pylint(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
 
 @task
 def yamllint(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
-    """This will run yamllint to validate formatting adheres to NTC defined YAML standards.
+    """Runs yamllint to validate formatting adheres to NTC defined YAML standards.
 
     Args:
         context (obj): Used to run specific commands
@@ -204,7 +204,7 @@ def yamllint(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
 
 @task
 def pydocstyle(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
-    """This will run pydocstyle to validate docstring formatting adheres to NTC defined standards.
+    """Runs pydocstyle to validate docstring formatting adheres to NTC defined standards.
 
     Args:
         context (obj): Used to run specific commands
@@ -220,7 +220,7 @@ def pydocstyle(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
 
 @task
 def bandit(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
-    """This will run bandit to validate basic static code security analysis.
+    """Runs bandit to validate basic static code security analysis.
 
     Args:
         context (obj): Used to run specific commands
@@ -236,7 +236,7 @@ def bandit(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
 
 @task
 def cli(context, name=NAME, image_ver=IMAGE_VER):
-    """This will enter the image to perform troubleshooting or dev work.
+    """Enters the image to perform troubleshooting or dev work.
 
     Args:
         context (obj): Used to run specific commands
@@ -249,7 +249,7 @@ def cli(context, name=NAME, image_ver=IMAGE_VER):
 
 @task
 def lint(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
-    """This will run all tests for the specified name and Python version.
+    """Runs all tests for the specified name and Python version.
 
     Args:
         context (obj): Used to run specific commands
@@ -269,7 +269,7 @@ def lint(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
 
 @task
 def tests(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
-    """This will run all tests for the specified name and Python version.
+    """Runs all tests for the specified name and Python version.
 
     Args:
         context (obj): Used to run specific commands
