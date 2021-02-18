@@ -14,8 +14,6 @@ from nornir.core.inventory import (
     Groups,
     Host,
     Hosts,
-    Group,
-    ParentGroups,
 )
 
 # Other third party imports
@@ -24,6 +22,7 @@ from requests import Session
 
 # Create Logger
 logger = logging.getLogger(__name__)
+
 
 def _set_host(data: Dict[str, Any], name: str, groups, host) -> Host:
     connection_option = {}
@@ -46,6 +45,7 @@ def _set_host(data: Dict[str, Any], name: str, groups, host) -> Host:
         groups=groups,
         connection_options=connection_option,
     )
+
 
 # Setup connection to Nautobot
 class NautobotInventory:
@@ -148,9 +148,11 @@ class NautobotInventory:
                 str(ipaddress.IPv4Interface(device.primary_ip.address).ip) if device["primary_ip"] else device["name"]
             )
             host["name"] = device.name or str(device.id)
-            host['groups'] = []
+            host["groups"] = []
 
             # Add host to hosts by name first, ID otherwise - to string
-            hosts[device.name or str(device.id)] = _set_host(data=host['data'], name=host['name'], groups=host['groups'], host=host)
+            hosts[device.name or str(device.id)] = _set_host(
+                data=host["data"], name=host["name"], groups=host["groups"], host=host
+            )
 
         return Inventory(hosts=hosts, groups=groups, defaults=defaults)

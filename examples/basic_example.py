@@ -4,11 +4,10 @@ from nornir import InitNornir
 from nornir.core.task import Task, Result
 from nornir_utils.plugins.functions import print_result
 
+
 def hello_world(task: Task, inv=None) -> Result:
-    return Result(
-        host=task.host,
-        result=f"{task.host.name} says hello world!"
-    )
+    return Result(host=task.host, result=f"{task.host.name} says hello world!")
+
 
 def main():
     """Nornir testing."""

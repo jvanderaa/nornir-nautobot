@@ -235,7 +235,7 @@ def bandit(context, name=NAME, image_ver=IMAGE_VER, local=INVOKE_LOCAL):
 
 
 @task
-def cli(context, name=NAME, image_ver=IMAGE_VER, env_file=None):
+def cli(context, name=NAME, image_ver=IMAGE_VER):
     """Enters the image to perform troubleshooting or dev work.
 
     Args:
@@ -243,10 +243,7 @@ def cli(context, name=NAME, image_ver=IMAGE_VER, env_file=None):
         name (str): Used to name the docker image
         image_ver (str): Define image version
     """
-    dev = f"docker run -it -v {PWD}:/local "
-    if env_file:
-        dev += "--env-file .env "
-    dev += f"{name}:{image_ver} /bin/bash"
+    dev = f"docker run -it -v {PWD}:/local {name}:{image_ver} /bin/bash"
     context.run(f"{dev}", pty=True)
 
 
