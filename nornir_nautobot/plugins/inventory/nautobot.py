@@ -151,7 +151,7 @@ class NautobotInventory:
             host["groups"] = []
 
             # Add host to hosts by name first, ID otherwise - to string
-            hosts[device.name or str(device.id)] = _set_host(
+            hosts[device.name or str(device.id)] = _set_host(  # pylint: disable=unsupported-assignment-operation
                 data=host["data"], name=host["name"], groups=host["groups"], host=host
             )
 
