@@ -9,9 +9,13 @@ from typing import Any, Dict, Union
 # Nornir Imports
 from nornir.core.inventory import (
     Inventory,
-    Groups,
-    Hosts,
+    ConnectionOptions,
     Defaults,
+    Groups,
+    Host,
+    Hosts,
+    Group,
+    ParentGroups,
 )
 
 # Other third party imports
@@ -20,6 +24,28 @@ from requests import Session
 
 # Create Logger
 logger = logging.getLogger(__name__)
+
+def _set_host(data: Dict[str, Any], name: str, groups, host) -> Host:
+    connection_option = {}
+    for key, value in data.get("connection_options", {}).items():
+        connection_option[key] = ConnectionOptions(
+            hostname=value.get("hostname"),
+            port=value.get("port"),
+            username=value.get("username"),
+            password=value.get("password"),
+            platform=value.get("platform"),
+            extras=value.get("extras"),
+        )
+    return Host(
+        name=name,
+        hostname=host["hostname"],
+        username=host.get("username"),
+        password=host.get("password"),
+        platform=host.get("platform"),
+        data=data,
+        groups=groups,
+        connection_options=connection_option,
+    )
 
 # Setup connection to Nautobot
 class NautobotInventory:
@@ -108,21 +134,23 @@ class NautobotInventory:
 
         for device in self.devices:
             # Set the base information for a device
-            inv_dev: Dict[Any, Any] = {"data": {}}
+            host: Dict[Any, Any] = {"data": {}}
 
             # Assign the pynautobot host object to the data key
-            inv_dev["data"]["pynautobot_object"] = device
+            host["data"]["pynautobot_object"] = device
 
             # Create dictionary object available for filtering
-            inv_dev["data"]["pynautobot_dictionary"] = dict(device)
+            host["data"]["pynautobot_dictionary"] = dict(device)
             # TODO: #3 Investigate Nornir compatability with dictionary like object
 
             # Add Primary IP address, if found. Otherwise add hostname as the device name
-            inv_dev["hostname"] = (
+            host["hostname"] = (
                 str(ipaddress.IPv4Interface(device.primary_ip.address).ip) if device["primary_ip"] else device["name"]
             )
+            host["name"] = device.name or str(device.id)
+            host['groups'] = []
 
             # Add host to hosts by name first, ID otherwise - to string
-            hosts[device.name or str(device.id)] = inv_dev  # pylint: disable=unsupported-assignment-operation
+            hosts[device.name or str(device.id)] = _set_host(data=host['data'], name=host['name'], groups=host['groups'], host=host)
 
         return Inventory(hosts=hosts, groups=groups, defaults=defaults)
