@@ -5,7 +5,15 @@ from nornir.core.task import Task, Result
 from nornir_utils.plugins.functions import print_result
 
 
-def hello_world(task: Task, inv=None) -> Result:
+def hello_world(task: Task) -> Result:
+    """Example to show work inside of a task
+
+    Args:
+        task (Task): Nornir Task
+
+    Returns:
+        Result: Nornir result
+    """
     return Result(host=task.host, result=f"{task.host.name} says hello world!")
 
 
