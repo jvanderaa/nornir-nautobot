@@ -2,6 +2,7 @@
 import os
 from nornir import InitNornir
 from nornir.core.task import Task, Result
+
 # Disabling pylint for example
 from nornir_utils.plugins.functions import print_result  # pylint: disable=import-error
 
