@@ -36,7 +36,7 @@ def main():
     # Print out the keys for the inventory
     print(my_nornir.inventory.hosts.keys())
 
-    result = my_nornir.run(task=hello_world, inv=my_nornir.inventory)
+    result = my_nornir.run(task=hello_world)
     print_result(result)
 
 
