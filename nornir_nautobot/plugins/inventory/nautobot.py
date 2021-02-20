@@ -40,7 +40,7 @@ def _set_host(data: Dict[str, Any], name: str, groups, host) -> Host:
         hostname=host["hostname"],
         username=host.get("username"),
         password=host.get("password"),
-        platform=host.get("platform"),
+        platform=host.get("platform", {}).get("slug"),
         data=data,
         groups=groups,
         connection_options=connection_option,
