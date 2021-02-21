@@ -1,4 +1,5 @@
 """Testing file."""
+# pylint: disable=duplicate-code
 import os
 from nornir import InitNornir
 from nornir.core.task import Task, Result
