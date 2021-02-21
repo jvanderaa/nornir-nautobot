@@ -5,15 +5,15 @@
     "results": [
         {
             "id": 5,
-            "url": "http://netbox-demo/api/dcim/devices/5/",
+            "url": "http://nautobot-demo.com/api/dcim/devices/5/",
             "name": "den-dist01",
             "display_name": "den-dist01",
             "device_type": {
                 "id": 3,
-                "url": "http://netbox-demo/api/dcim/device-types/3/",
+                "url": "http://nautobot-demo.com/api/dcim/device-types/3/",
                 "manufacturer": {
                     "id": 1,
-                    "url": "http://netbox-demo/api/dcim/manufacturers/1/",
+                    "url": "http://nautobot-demo.com/api/dcim/manufacturers/1/",
                     "name": "Cisco",
                     "slug": "cisco"
                 },
@@ -23,14 +23,14 @@
             },
             "device_role": {
                 "id": 2,
-                "url": "http://netbox-demo/api/dcim/device-roles/2/",
+                "url": "http://nautobot-demo.com/api/dcim/device-roles/2/",
                 "name": "Network",
                 "slug": "network"
             },
             "tenant": null,
             "platform": {
                 "id": 2,
-                "url": "http://netbox-demo/api/dcim/platforms/2/",
+                "url": "http://nautobot-demo.com/api/dcim/platforms/2/",
                 "name": "Cisco IOS",
                 "slug": "ios"
             },
@@ -38,7 +38,7 @@
             "asset_tag": null,
             "site": {
                 "id": 4,
-                "url": "http://netbox-demo/api/dcim/sites/4/",
+                "url": "http://nautobot-demo.com/api/dcim/sites/4/",
                 "name": "DEN",
                 "slug": "den"
             },
@@ -52,13 +52,13 @@
             },
             "primary_ip": {
                 "id": 5,
-                "url": "http://netbox-demo/api/ipam/ip-addresses/5/",
+                "url": "http://nautobot-demo.com/api/ipam/ip-addresses/5/",
                 "family": 4,
                 "address": "10.17.1.2/30"
             },
             "primary_ip4": {
                 "id": 5,
-                "url": "http://netbox-demo/api/ipam/ip-addresses/5/",
+                "url": "http://nautobot-demo.com/api/ipam/ip-addresses/5/",
                 "family": 4,
                 "address": "10.17.1.2/30"
             },
@@ -72,7 +72,7 @@
             "tags": [
                 {
                     "id": 2,
-                    "url": "http://netbox-demo/api/extras/tags/2/",
+                    "url": "http://nautobot-demo.com/api/extras/tags/2/",
                     "name": "snmp_monitoring",
                     "slug": "snmp_monitoring",
                     "color": "3f51b5"
