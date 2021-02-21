@@ -32,7 +32,7 @@ def _set_host(data: Dict[str, Any], name: str, groups, host) -> Host:
             port=value.get("port"),
             username=value.get("username"),
             password=value.get("password"),
-            platform=value.get("platform"),
+            platform=host.get("platform", {}).get("slug"),
             extras=value.get("extras"),
         )
     return Host(
