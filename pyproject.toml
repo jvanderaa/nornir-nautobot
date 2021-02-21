@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nornir-nautobot"
-version = "0.3.0-alpha.0"
+version = "0.3.0-alpha.1"
 description = "Nornir Nautobot"
 authors = ["Network to Code, LLC <info@networktocode.com>"]
 
@@ -8,7 +8,7 @@ authors = ["Network to Code, LLC <info@networktocode.com>"]
 python = "^3.6"
 nornir = "^3.0.0"
 requests = "^2.25.1"
-pynautobot = {path = "/local/packages/pynautobot-1.0.0.tar.gz"}
+pynautobot = {path = "packages/pynautobot-1.0.0.tar.gz"}
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
