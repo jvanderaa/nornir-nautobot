@@ -34,6 +34,21 @@ API_CALLS = [
         "url": "http://mock.example.com/api/dcim/devices/?name=den-wan01",
         "method": "get",
     },
+    {
+        "fixture_path": f"{HERE}/mocks/05_get_sites_filtered.json",
+        "url": "http://mock.example.com/api/dcim/devices/?site=msp",
+        "method": "get",
+    },
+    {
+        "fixture_path": f"{HERE}/mocks/06_get_device_msp-rtr01.json",
+        "url": "http://mock.example.com/api/dcim/devices/?name=msp-rtr01",
+        "method": "get",
+    },
+    {
+        "fixture_path": f"{HERE}/mocks/07_get_device_msp-rtr02.json",
+        "url": "http://mock.example.com/api/dcim/devices/?name=msp-rtr02",
+        "method": "get",
+    },
 ]
 
 # Functions for helping tests
@@ -105,6 +120,22 @@ def test_devices():
         pynautobot_obj = pynautobot.api(url="http://mock.example.com", token="0123456789abcdef01234567890")
         expected_devices = []
         for device in ["den-dist01", "den-dist02", "den-wan01"]:
+            expected_devices.append(pynautobot_obj.dcim.devices.get(name=device))
+
+        assert test_class.devices == expected_devices
+
+
+def test_filter_devices():
+    with Mocker() as mock:
+        load_api_calls(mock)
+        test_class = NautobotInventory(
+            nautobot_url="http://mock.example.com",
+            nautobot_token="0123456789abcdef01234567890",
+            filter_parameters={"site": "msp"},
+        )
+        pynautobot_obj = pynautobot.api(url="http://mock.example.com", token="0123456789abcdef01234567890")
+        expected_devices = []
+        for device in ["msp-rtr01", "msp-rtr02"]:
             expected_devices.append(pynautobot_obj.dcim.devices.get(name=device))
 
         assert test_class.devices == expected_devices
