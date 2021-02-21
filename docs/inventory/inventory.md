@@ -15,7 +15,7 @@ There are two required parameters that may be loaded either through configuratio
 
 ## Using Inventory
 
-### Basic No Options
+### Initialization via Environment Variables, No Options
 
 Without any options configured the plugin will search the environment for the URL and TOKEN to be used. This also will validate any certificates for the inventory.
 
@@ -27,7 +27,7 @@ nornir_obj = InitNornir(
 )
 ```
 
-### Defining in Configuration
+### Initialization via Configuration
 
 This example shows providing configuration options to set the URL statically, load the configuration of the TOKEN via the environment. This also has SSL verification disabled if required.
 
@@ -158,6 +158,11 @@ dict_keys(['den-rtr01', 'den-rtr02', 'grb-rtr01', 'nyc-rtr01', 'nyc-rtr02'])
 
 ## Inventory Parameters
 
+Parameter precedence follows:
+
+1. Definition of variable in the configuration
+2. Gathered from the environment when not defined by the configuration
+
 ### nautobot_url
 
 Default: Environment Variable Look Up
@@ -179,5 +184,19 @@ Whether or not to verify the certificate from Nautobot.
 ### filter_parameters
 
 The filtering parameters provided as a dictionary of key/value pairs. The keys should match parameters of DCIM Devices API endpoint. To test the parameters it is recommended to use the API docs (linked at the bottom of Nautobot) to help identify appropriate filter parameters.
+
+## Getting Started with the Examples
+
+You can test out this without installing into your own system following these steps to test yourself. 
+
+### Requirements
+
+* Docker
+* Python Invoke (`pip install invoke`)
+
+### Building the Docker container and executing
+
+1. Execute `invoke build` to build a container
+2. Execute `invoke cli` to enter into the bash shell
 
 [Home](../index.md)

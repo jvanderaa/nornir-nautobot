@@ -2,10 +2,16 @@
 
 ## Getting Started
 
+```shell
+pip install nornir-nautobot
+```
+
+### 
+
 To get started without a configuration file:
 
 ```python
-    my_nornir = InitNornir(
+    nornir_obj = InitNornir(
         inventory={
             "plugin": "NautobotInventory",
             "options": {
@@ -37,4 +43,4 @@ In the early stages of testing since pynautobot is not available in a public sta
 
 ## Construct
 
-Pynautobot will provide for the basic information that is required for Nornir to be able to leverage the inventory. The pynautobot object will also be made available at `host.data.pynautobot_object` to be able to access information provided from the _dcim_ endpoint.
+Pynautobot will provide for the basic information that is required for Nornir to be able to leverage the inventory. The pynautobot object will also be made available at `host.data.pynautobot_object` to be able to access information provided from the _dcim devices_ endpoint.
