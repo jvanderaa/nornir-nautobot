@@ -114,7 +114,7 @@ class NautobotInventory:
                 self._devices = self.pynautobot_obj.dcim.devices.all()
             else:
                 try:
-                    self._devices = self.pynautobot_obj.dcim.filter(**self.filter_parameters)
+                    self._devices = self.pynautobot_obj.dcim.devices.filter(**self.filter_parameters)
                 except pynautobot.core.query.RequestError:
                     print("Error in the query filters. Please verify the parameters.")
                     sys.exit(1)
