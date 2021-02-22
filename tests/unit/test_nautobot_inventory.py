@@ -79,16 +79,14 @@ def test_nornir_nautobot_initialization():
     assert no_exception_found
 
 
-def test_nornir_nautobot_missing_url(delete_environment):
-    delete_environment
+def test_nornir_nautobot_missing_url():
     with pytest.raises(ValueError) as err:
         NautobotInventory(nautobot_url=None, nautobot_token="0123456789abcdef01234567890")
 
     assert str(err.value) == "Missing URL or Token from parameters or environment."
 
 
-def test_nornir_nautobot_missing_token(delete_environment):
-    delete_environment
+def test_nornir_nautobot_missing_token():
     with pytest.raises(ValueError) as err:
         NautobotInventory(nautobot_url="http://localhost:8000", nautobot_token=None)
 
