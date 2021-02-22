@@ -33,7 +33,9 @@ class NautobotNornirDriver:
     """Default collection of Nornir Tasks based on Napalm."""
 
     @staticmethod
-    def get_config(task: Task, backup_file: str, *args, **kwargs) -> Result:  # pylint: disable=unused-argument
+    def get_config(
+        task: Task, backup_file: str, remove_lines=[], substitute_lines=[], *args, **kwargs
+    ) -> Result:  # pylint: disable=unused-argument
         """Get the latest configuration from the device.
 
         Args:
@@ -60,13 +62,13 @@ class NautobotNornirDriver:
             return result
 
         running_config = result[0].result.get("config", {}).get("running", None)
-        if task.host.data["config_context"].get("remove_lines"):
+        if remove_lines:
             logger.log_debug("Removing lines from configuration based on `remove_lines` definition")
-            running_config = _remove_lines(running_config, task.host.data["config_context"]["remove_lines"])
+            running_config = _remove_lines(running_config, remove_lines)
 
-        if task.host.data["config_context"].get("substitute_lines"):
+        if substitute_lines:
             logger.log_debug("Substitute lines from configuration based on `substitute_lines` definition")
-            running_config = _substitute_lines(running_config, task.host.data["config_context"]["substitute_lines"])
+            running_config = _substitute_lines(running_config, substitute_lines)
 
         make_folder(os.path.dirname(backup_file))
 
@@ -186,7 +188,7 @@ class NetmikoNautobotNornirDriver(NautobotNornirDriver):
     """Default collection of Nornir Tasks based on Netmiko."""
 
     @staticmethod
-    def get_config(task: Task, backup_file: str, *args, **kwargs) -> Result:
+    def get_config(task: Task, backup_file: str, remove_lines=[], substitute_lines=[], *args, **kwargs) -> Result:
         """Get the latest configuration from the device using Netmiko.
 
         Args:
@@ -226,12 +228,12 @@ class NetmikoNautobotNornirDriver(NautobotNornirDriver):
             logger.log_failure(obj, "Discovered `ERROR: % Invalid input detected at` in the output")
             raise NornirNautobotException()
 
-        if task.host.data["config_context"].get("remove_lines"):
+        if remove_lines:
             logger.log_debug("Removing lines from configuration based on `remove_lines` definition")
-            running_config = _remove_lines(running_config, task.host.data["config_context"]["remove_lines"])
-        if task.host.data["config_context"].get("substitute_lines"):
+            running_config = _remove_lines(running_config, remove_lines)
+        if substitute_lines:
             logger.log_debug("Substitute lines from configuration based on `substitute_lines` definition")
-            running_config = _substitute_lines(running_config, task.host.data["config_context"]["substitute_lines"])
+            running_config = _substitute_lines(running_config, substitute_lines)
 
         make_folder(os.path.dirname(backup_file))
 
