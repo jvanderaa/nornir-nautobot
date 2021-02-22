@@ -4,7 +4,7 @@ from nornir_nautobot.plugins.inventory.nautobot import NautobotInventory
 
 
 @pytest.fixture()
-def nautobot_nornir_class():
+def nornir_nautobot_class():
     """Provide True to make tests pass.
 
     Returns:

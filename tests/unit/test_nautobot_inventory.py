@@ -93,22 +93,22 @@ def test_nornir_nautobot_missing_token():
     assert str(err.value) == "Missing URL or Token from parameters or environment."
 
 
-def test_api_session(nautobot_nornir_class):
+def test_api_session(nornir_nautobot_class):
     expected_headers = {
         "User-Agent": "python-requests/2.25.1",
         "Accept-Encoding": "gzip, deflate",
         "Accept": "*/*",
         "Connection": "keep-alive",
     }
-    assert isinstance(nautobot_nornir_class.api_session, Session)
-    assert expected_headers == nautobot_nornir_class.api_session.headers
+    assert isinstance(nornir_nautobot_class.api_session, Session)
+    assert expected_headers == nautobonornir_nautobot_classt_nornir_class.api_session.headers
 
 
-def test_pynautobot_obj(nautobot_nornir_class):
+def test_pynautobot_obj(nornir_nautobot_class):
     assert isinstance(nautobot_nornir_class.pynautobot_obj, pynautobot.api)
 
 
-def test_devices(nautobot_nornir_class):
+def test_devices(nornir_nautobot_class):
     # Import mock requests
     with Mocker() as mock:
         load_api_calls(mock)
@@ -117,7 +117,7 @@ def test_devices(nautobot_nornir_class):
         for device in ["den-dist01", "den-dist02", "den-wan01"]:
             expected_devices.append(pynautobot_obj.dcim.devices.get(name=device))
 
-        assert nautobot_nornir_class.devices == expected_devices
+        assert nornir_nautobot_class.devices == expected_devices
 
 
 def test_filter_devices():
