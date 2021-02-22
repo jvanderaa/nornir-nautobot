@@ -101,11 +101,11 @@ def test_api_session(nornir_nautobot_class):
         "Connection": "keep-alive",
     }
     assert isinstance(nornir_nautobot_class.api_session, Session)
-    assert expected_headers == nautobonornir_nautobot_classt_nornir_class.api_session.headers
+    assert expected_headers == nornir_nautobot_class.api_session.headers
 
 
 def test_pynautobot_obj(nornir_nautobot_class):
-    assert isinstance(nautobot_nornir_class.pynautobot_obj, pynautobot.api)
+    assert isinstance(nornir_nautobot_class.pynautobot_obj, pynautobot.api)
 
 
 def test_devices(nornir_nautobot_class):
