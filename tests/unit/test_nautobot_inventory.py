@@ -80,6 +80,7 @@ def test_nornir_nautobot_initialization():
 
 
 def test_nornir_nautobot_missing_url(delete_environment):
+    delete_environment
     with pytest.raises(ValueError) as err:
         NautobotInventory(nautobot_url=None, nautobot_token="0123456789abcdef01234567890")
 
@@ -87,6 +88,7 @@ def test_nornir_nautobot_missing_url(delete_environment):
 
 
 def test_nornir_nautobot_missing_token(delete_environment):
+    delete_environment
     with pytest.raises(ValueError) as err:
         NautobotInventory(nautobot_url="http://localhost:8000", nautobot_token=None)
 
