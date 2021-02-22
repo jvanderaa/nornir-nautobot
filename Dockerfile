@@ -10,3 +10,5 @@ COPY . /local
 
 RUN poetry config virtualenvs.create false \
   && poetry install --no-interaction --no-ansi
+
+RUN pip install /local/packages/pynautobot-1.0.0.tar.gz
