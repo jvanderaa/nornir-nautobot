@@ -8,7 +8,6 @@ authors = ["Network to Code, LLC <info@networktocode.com>"]
 python = "^3.6"
 nornir = "^3.0.0"
 requests = "^2.25.1"
-pynautobot = {path = "packages/pynautobot-1.0.0.tar.gz"}
 nornir-utils = "^0.1.1"
 nornir-napalm = "^0.1.1"
 nornir-jinja2 = "^0.1.1"
@@ -82,3 +81,4 @@ build-backend = "poetry.masonry.api"
 [tool.pytest.ini_options]
 testpaths = "tests/"
 addopts = "-vv"
+env_files = ".env"
