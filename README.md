@@ -1,5 +1,16 @@
 # nornir_nautobot
 
+## Overview
+
+The nornir_nautobot project intends to solve two primary use cases.
+
+* Providing a Nornir inventory that leverages Nautobot's API.
+* A set of opioninated Nornir plugins.
+
+The set of plugins intended to provide mechanisms to include common networking workflows that will help enable network automation. As
+as example, there are method to get configurations or test network connectivity. Over time this will include functions to perform
+actions such as get vlans, neighbors, protocols, etc.
+
 ## Getting Started
 
 ```shell
@@ -44,3 +55,56 @@ In the early stages of testing since pynautobot is not available in a public sta
 ## Construct
 
 Pynautobot will provide for the basic information that is required for Nornir to be able to leverage the inventory. The pynautobot object will also be made available at `host.data.pynautobot_object` to be able to access information provided from the _dcim devices_ endpoint.
+
+
+## Task Plugins
+
+The only task plugin currently is the "dispatcher" plugin. This plugin dispatches to the more specific OS specfic functions. To demonstrate the primary components of the code:
+
+#### Dispatcher Sender
+
+```python
+    try:
+        driver_task = getattr(driver_class, method)
+    except AttributeError:
+        logger.log_failure(obj, f"Unable to locate the method {method} for {driver}")
+        raise NornirNautobotException()
+
+    result = task.run(task=driver_task, *args, **kwargs)
+```
+
+#### Dispatcher Receiver
+
+```python
+class NautobotNornirDriver:
+    """Default collection of Nornir Tasks based on Napalm."""
+
+    @staticmethod
+    def get_config(task: Task, backup_file: str, *args, **kwargs) -> Result:
+```
+
+#### Calling Dispatcher
+
+```python
+task.run(
+    task=dispatcher,
+    name="SAVE BACKUP CONFIGURATION TO FILE",
+    method="get_config",
+    obj=obj,
+    logger=logger,
+    backup_file=backup_file,
+    remove_lines=global_settings,
+    substitute_lines=substitute_lines,
+)
+```
+
+The dispatcher expects the two primary objects, the `obj` and `logger` objects. The `obj` object should be a Device model instance. The logger
+should be `NornirLogger` instance which is imported from `nornir_nautobot.utils.logger`. This logging object optionally takes in a Nautobot
+job_result object. This is for use within the Nautobot platform Jobs. 
+
+Each task will raise a `NornirNautobotException` for known issues. Using a custom processor, the user can predict when it was an well known error.
+
+## Processor Plugins
+
+Provided for convience within the `nornir_nautobot.plugins.processors` is the `BaseProcessor` and `BaseLoggingProcessor` as boilerplate code for creating a custom
+processor.
