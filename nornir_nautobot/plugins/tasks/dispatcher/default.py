@@ -1,5 +1,5 @@
 """default driver for the network_importer."""
-# pylint: disable=raise-missing-from
+# pylint: disable=raise-missing-from,too-many-arguments
 
 import os
 import re
@@ -33,9 +33,7 @@ class NautobotNornirDriver:
     """Default collection of Nornir Tasks based on Napalm."""
 
     @staticmethod
-    def get_config(
-        task: Task, backup_file: str, remove_lines=[], substitute_lines=[], *args, **kwargs
-    ) -> Result:  # pylint: disable=unused-argument
+    def get_config(task: Task, logger, obj, backup_file: str, remove_lines: list, substitute_lines: list) -> Result:
         """Get the latest configuration from the device.
 
         Args:
@@ -45,9 +43,6 @@ class NautobotNornirDriver:
             Result: Nornir Result object with a dict as a result containing the running configuration
                 { "config: <running configuration> }
         """
-        logger = task.host.defaults.data["logger"]
-        obj = task.host.data["obj"]
-
         logger.log_debug(f"Executing get_config for {task.host.name} on {task.host.platform}")
 
         # TODO: Find standard napalm exceptions and account for them
@@ -77,11 +72,8 @@ class NautobotNornirDriver:
         return Result(host=task.host, result={"config": running_config})
 
     @staticmethod
-    def check_connectivity(task: Task, *args, **kwargs) -> Result:  # pylint: disable=unused-argument
+    def check_connectivity(task: Task, logger, obj) -> Result:
         """Get the latest configuration from the device."""
-        logger = task.host.defaults.data["logger"]
-        obj = task.host.data["obj"]
-
         if is_ip(task.host.hostname):
             ip_addr = task.host.hostname
         else:
@@ -106,18 +98,9 @@ class NautobotNornirDriver:
 
     @staticmethod
     def compliance_config(
-        task: Task,  # pylint: disable=unused-argument
-        features: str,
-        backup_file: str,
-        intended_file: str,
-        platform: str,
-        *args,
-        **kwargs,
+        task: Task, logger, obj, features: str, backup_file: str, intended_file: str, platform: str
     ) -> Result:
         """Compare two configurations against each other."""
-        logger = task.host.defaults.data["logger"]
-        obj = task.host.data["obj"]
-
         if not os.path.exists(backup_file):
             logger.log_failure(obj, f"Backup file Not Found at location: `{backup_file}`")
             raise NornirNautobotException()
@@ -135,17 +118,9 @@ class NautobotNornirDriver:
 
     @staticmethod
     def generate_config(
-        task: Task,  # pylint: disable=unused-argument
-        jinja_template: str,
-        jinja_root_path: str,
-        output_file_location: str,
-        *args,
-        **kwargs,
+        task: Task, logger, obj, jinja_template: str, jinja_root_path: str, output_file_location: str
     ) -> Result:
         """Get the latest configuration from the device."""
-        logger = task.host.defaults.data["logger"]
-        obj = task.host.data["obj"]
-
         try:
             filled_template = task.run(
                 **task.host.data,
@@ -188,7 +163,7 @@ class NetmikoNautobotNornirDriver(NautobotNornirDriver):
     """Default collection of Nornir Tasks based on Netmiko."""
 
     @staticmethod
-    def get_config(task: Task, backup_file: str, remove_lines=[], substitute_lines=[], *args, **kwargs) -> Result:
+    def get_config(task: Task, logger, obj, backup_file: str, remove_lines: list, substitute_lines: list) -> Result:
         """Get the latest configuration from the device using Netmiko.
 
         Args:
@@ -198,9 +173,6 @@ class NetmikoNautobotNornirDriver(NautobotNornirDriver):
             Result: Nornir Result object with a dict as a result containing the running configuration
                 { "config: <running configuration> }
         """
-        obj = task.host.data["obj"]
-        logger = task.host.defaults.data["logger"]
-
         logger.log_debug(f"Executing get_config for {task.host.name} on {task.host.platform}")
         command = RUN_COMMAND_MAPPING.get(task.host.platform, RUN_COMMAND_MAPPING["default"])
 

@@ -19,7 +19,7 @@ _DEFAULT_DRIVERS_MAPPING = {
 }
 
 
-def dispatcher(task: Task, method: str, *args, **kwargs) -> Result:
+def dispatcher(task: Task, method: str, logger, obj, *args, **kwargs) -> Result:
     """Helper Task to retrieve a given Nornir task for a given platform.
 
     Args:
@@ -29,8 +29,6 @@ def dispatcher(task: Task, method: str, *args, **kwargs) -> Result:
     Returns:
         Result: Nornir Task result.
     """
-    logger = task.host.defaults.data["logger"]
-    obj = task.host.data["obj"]
     if kwargs.get("default_drivers_mapping"):
         default_drivers_mapping = kwargs["default_drivers_mapping"]
     else:
@@ -58,7 +56,7 @@ def dispatcher(task: Task, method: str, *args, **kwargs) -> Result:
         logger.log_failure(obj, f"Unable to locate the method {method} for {driver}")
         raise NornirNautobotException()
 
-    result = task.run(task=driver_task, *args, **kwargs)
+    result = task.run(task=driver_task, logger=logger, obj=obj, *args, **kwargs)
 
     return Result(
         host=task.host,
