@@ -37,7 +37,12 @@ class NautobotNornirDriver:
         """Get the latest configuration from the device.
 
         Args:
-            task (Task): Nornir Task
+            task (Task): Nornir Task.
+            logger (NornirLogger): Custom NornirLogger object to reflect job_results (via Nautobot Jobs) and Python logger.
+            obj (Device): A Nautobot Device Django ORM object instance.
+            backup_file (str): The file location of where the back configuration should be saved.
+            remove_lines (list): A list of regex lines to remove configurations.
+            substitute_lines (list): A list of dictionaries with to remove and replace lines.
 
         Returns:
             Result: Nornir Result object with a dict as a result containing the running configuration
@@ -73,7 +78,16 @@ class NautobotNornirDriver:
 
     @staticmethod
     def check_connectivity(task: Task, logger, obj) -> Result:
-        """Get the latest configuration from the device."""
+        """Check the connectivity to a network device.
+
+        Args:
+            task (Task): Nornir Task.
+            logger (NornirLogger): Custom NornirLogger object to reflect job_results (via Nautobot Jobs) and Python logger.
+            obj (Device): A Nautobot Device Django ORM object instance.
+
+        Returns:
+            Result: Nornir Result object.
+        """
         if is_ip(task.host.hostname):
             ip_addr = task.host.hostname
         else:
@@ -100,7 +114,20 @@ class NautobotNornirDriver:
     def compliance_config(
         task: Task, logger, obj, features: str, backup_file: str, intended_file: str, platform: str
     ) -> Result:
-        """Compare two configurations against each other."""
+        """Compare two configurations against each other.
+
+        Args:
+            task (Task): Nornir Task.
+            logger (NornirLogger): Custom NornirLogger object to reflect job_results (via Nautobot Jobs) and Python logger.
+            obj (Device): A Nautobot Device Django ORM object instance.
+            features (dict): A dictionary describing the configurations required.
+            backup_file (str): The file location of where the back configuration should be saved.
+            intended_file (str):  The file location of where the intended configuration should be saved.
+            platform (str): The platform slug of the device.
+
+        Returns:
+            Result: Nornir Result object with a feature_data key of the compliance data.
+        """
         if not os.path.exists(backup_file):
             logger.log_failure(obj, f"Backup file Not Found at location: `{backup_file}`")
             raise NornirNautobotException()
@@ -120,7 +147,19 @@ class NautobotNornirDriver:
     def generate_config(
         task: Task, logger, obj, jinja_template: str, jinja_root_path: str, output_file_location: str
     ) -> Result:
-        """Get the latest configuration from the device."""
+        """A small wrapper around template_file Nornir task.
+
+        Args:
+            task (Task): Nornir Task.
+            logger (NornirLogger): Custom NornirLogger object to reflect job_results (via Nautobot Jobs) and Python logger.
+            obj (Device): A Nautobot Device Django ORM object instance.
+            jinja_template (str): The file location of the actual Jinja template.
+            jinja_root_path (str): The file folder where the file will be saved to.
+            output_file_location (str): The filename where the file will be saved to.
+
+        Returns:
+            Result: Nornir Result object.
+        """
         try:
             filled_template = task.run(
                 **task.host.data,
@@ -167,7 +206,11 @@ class NetmikoNautobotNornirDriver(NautobotNornirDriver):
         """Get the latest configuration from the device using Netmiko.
 
         Args:
-            task (Task): Nornir Task
+            task (Task): Nornir Task.
+            logger (NornirLogger): Custom NornirLogger object to reflect job_results (via Nautobot Jobs) and Python logger.
+            obj (Device): A Nautobot Device Django ORM object instance.
+            remove_lines (list): A list of regex lines to remove configurations.
+            substitute_lines (list): A list of dictionaries with to remove and replace lines.
 
         Returns:
             Result: Nornir Result object with a dict as a result containing the running configuration
