@@ -5,7 +5,7 @@
 The nornir_nautobot project intends to solve two primary use cases.
 
 * Providing a Nornir inventory that leverages Nautobot's API.
-* A set of opioninated Nornir plugins.
+* A set of opinionated Nornir plugins.
 
 The set of plugins intended to provide mechanisms to include common networking workflows that will help enable network automation. As
 as example, there are method to get configurations or test network connectivity. Over time this will include functions to perform
@@ -59,7 +59,7 @@ Pynautobot will provide for the basic information that is required for Nornir to
 
 ## Task Plugins
 
-The only task plugin currently is the "dispatcher" plugin. This plugin dispatches to the more specific OS specfic functions. To demonstrate the primary components of the code:
+The only task plugin currently is the "dispatcher" plugin. This plugin dispatches to the more specific OS specific functions. To demonstrate the primary components of the code:
 
 #### Dispatcher Sender
 
@@ -98,13 +98,10 @@ task.run(
 )
 ```
 
-The dispatcher expects the two primary objects, the `obj` and `logger` objects. The `obj` object should be a Device model instance. The logger
-should be `NornirLogger` instance which is imported from `nornir_nautobot.utils.logger`. This logging object optionally takes in a Nautobot
-job_result object. This is for use within the Nautobot platform Jobs. 
+The dispatcher expects the two primary objects, the `obj` and `logger` objects. The `obj` object should be a Device model instance. The logger should be `NornirLogger` instance which is imported from `nornir_nautobot.utils.logger`. This logging object optionally takes in a Nautobot job_result object. This is for use within the Nautobot platform Jobs. 
 
 Each task will raise a `NornirNautobotException` for known issues. Using a custom processor, the user can predict when it was an well known error.
 
 ## Processor Plugins
 
-Provided for convience within the `nornir_nautobot.plugins.processors` is the `BaseProcessor` and `BaseLoggingProcessor` as boilerplate code for creating a custom
-processor.
+Provided for convenience within the `nornir_nautobot.plugins.processors` is the `BaseProcessor` and `BaseLoggingProcessor` as boilerplate code for creating a custom processor.

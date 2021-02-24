@@ -716,6 +716,17 @@ docs = ["sphinx (>=1.6.5)", "sphinx-rtd-theme"]
 tests = ["pytest (>=3.2.1,!=3.3.0)", "hypothesis (>=3.27.0)"]
 
 [[package]]
+name = "pynautobot"
+version = "1.0.1"
+description = "Nautobot API client library"
+category = "main"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[package.dependencies]
+requests = ">=2.20.0,<3.0.0"
+
+[[package]]
 name = "pyparsing"
 version = "2.4.7"
 description = "Python parsing module"
@@ -1011,7 +1022,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "fce8a9bf1105e4fb55b63b70dfc287da302b57e4d036b0ba21959333f4fc7955"
+content-hash = "bacb2b88e86ab6ae5e6dafe7d0cb8c66f38010449ef5be7887dc14e79d4ab7fd"
 
 [metadata.files]
 appdirs = [
@@ -1412,6 +1423,10 @@ pynacl = [
     {file = "PyNaCl-1.4.0-cp38-cp38-win32.whl", hash = "sha256:9c4a7ea4fb81536c1b1f5cc44d54a296f96ae78c1ebd2311bd0b60be45a48d96"},
     {file = "PyNaCl-1.4.0-cp38-cp38-win_amd64.whl", hash = "sha256:7c6092102219f59ff29788860ccb021e80fffd953920c4a8653889c029b2d420"},
     {file = "PyNaCl-1.4.0.tar.gz", hash = "sha256:54e9a2c849c742006516ad56a88f5c74bf2ce92c9f67435187c3c5953b346505"},
+]
+pynautobot = [
+    {file = "pynautobot-1.0.1-py3-none-any.whl", hash = "sha256:449441fa9e3b744cc4e380baa0d51e8aa76c7ce950162d75f2816689615baae4"},
+    {file = "pynautobot-1.0.1.tar.gz", hash = "sha256:a77b1a99d9e004853d21ed08c7712f26d2a26b764684e3201f91352c2b976f45"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
