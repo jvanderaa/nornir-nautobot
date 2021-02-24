@@ -3,13 +3,13 @@
 from . import parser  # pylint: disable=relative-beyond-top-level
 
 parser_map = {
-    "eos": parser.EOSConfigParser,
-    "ios": parser.IOSConfigParser,
-    "nxos": parser.NXOSConfigParser,
-    "aireos": parser.AIREOSConfigParser,
+    "arista_eos": parser.EOSConfigParser,
+    "cisco_ios": parser.IOSConfigParser,
+    "cisco_nxos": parser.NXOSConfigParser,
+    "cisco_aireos": parser.AIREOSConfigParser,
     "linux": parser.LINUXConfigParser,
-    "f5": parser.F5ConfigParser,
-    "junos": parser.JunosConfigParser,
+    "bigip_f5": parser.F5ConfigParser,
+    "juniper_junos": parser.JunosConfigParser,
 }
 
 default_feature = {
