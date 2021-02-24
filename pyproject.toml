@@ -1,8 +1,21 @@
 [tool.poetry]
 name = "nornir-nautobot"
-version = "0.3.0-alpha.1"
+version = "1.0.0"
 description = "Nornir Nautobot"
-authors = ["Network to Code, LLC <info@networktocode.com>"]
+authors = ["Network to Code, LLC <opensource@networktocode.com>"]
+readme = "README.md"
+license = "Apache-2.0"
+keywords = ["Nautobot"]
+classifiers = [
+  "Intended Audience :: Developers",
+  "Development Status :: 5 - Production/Stable",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.6",
+]
+repository = "https://github.com/nautobot/nornir-nautobot"
+homepage = "https://nautobot.com"
+documentation = "https://nornir-nautobot.readthedocs.io"
+
 
 [tool.poetry.dependencies]
 python = "^3.6"
@@ -12,6 +25,7 @@ nornir-utils = "^0.1.1"
 nornir-napalm = "^0.1.1"
 nornir-jinja2 = "^0.1.1"
 nornir-netmiko = "^0.1.1"
+pynautobot = "^1.0.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
@@ -81,4 +95,3 @@ build-backend = "poetry.masonry.api"
 [tool.pytest.ini_options]
 testpaths = "tests/"
 addopts = "-vv"
-env_files = ".env"
